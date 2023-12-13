@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
+import "dotenv/config";
 
-async function connectionMongoose() {
-  const _pwd = "Dci1234";
-  const _database = "restaurantAufgabe";
-  const _user = "minanfdc";
-  const _cluster = "cluster0.pdbvdkn.mongodb.net";
+async function connectMongoose() {
+  const _pwd = process.env._PWD;
+  const _database = process.env._DATABASE;
+  const _user = process.env._USER;
+  const _cluster = process.env._CLUSTER;
   const _uri = `mongodb+srv://${_user}:${_pwd}@${_cluster}/${_database}?retryWrites=true&w=majority`;
   try {
     await mongoose.connect(_uri);
@@ -19,4 +20,4 @@ async function connectionMongoose() {
   }
 }
 
-export {connectionMongoose}
+export { connectMongoose };
